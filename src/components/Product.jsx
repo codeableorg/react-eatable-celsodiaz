@@ -21,6 +21,7 @@ const ProductImage = styled.img`
   position: absolute; 
   top: -25%; 
   right: 0;
+  left: 0;
   width: 88%; 
   height: 57%; 
   object-fit: cover;
