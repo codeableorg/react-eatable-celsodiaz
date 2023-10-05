@@ -3,6 +3,7 @@ import { getProducts } from "./services/products-service";
 import { useEffect } from "react";
 import Container from "./components/Container";
 import ProductsList from "./components/ProductsList";
+import styled from "@emotion/styled";
 
 function parseProducts(products) {
   return products.map((product) => parseProduct(product));
@@ -20,6 +21,12 @@ function parseProduct(product) {
   };
 }
 
+const CustomTitle = styled.h1`
+  padding-top: 40px;
+  font-weight: bolder;
+  font-size: 1.5em;
+`;
+
 function App() {
   const [products, setProducts] = useState([]);
   
@@ -35,7 +42,8 @@ function App() {
   }, []);
   return (
    <Container>
-   <h1>PLATOS:</h1>
+   <CustomTitle>Products Dashboard</CustomTitle>
+   <button>Create Product</button>
    <ProductsList products={products}/>
    </Container>
   )

@@ -7,6 +7,10 @@ const ContainerDiv = styled.div`
   text-align: center;
   background-color: #eeecec;
   border-radius: 25px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
 `;
 
 export default function Container({ children }) {

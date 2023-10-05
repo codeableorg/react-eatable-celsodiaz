@@ -67,4 +67,5 @@ export const colors = {
     black: "#171717",
     white: "#FFFFFF",
     background: "#F7F7F7",
+    orange: "#FA4A0C",
   };
