@@ -4,11 +4,13 @@ import ReactDOM from 'react-dom/client';
 import { Global } from '@emotion/react';
 import { global, reset } from './styles';
 import CreatePage from './pages/Create-Page';
+import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <Global styles={reset} />
     <Global styles={global} />
-    <CreatePage/>
+    <App/>
+    {/* <CreatePage/> */}
   </React.StrictMode>,
 )
