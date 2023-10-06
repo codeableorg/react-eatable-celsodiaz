@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { colors } from '../styles/colors';
+import { useState } from 'react';
+import Modal from './Modal';
 
 const ProductContainer = styled.li`
   list-style: none;
@@ -40,6 +42,7 @@ const ProductPrice = styled.p`
 
 const Product = ({ product }) => {
   const formattedPrice = `$${(product.price / 100).toFixed(2)}`;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <ProductContainer>
@@ -47,9 +50,17 @@ const Product = ({ product }) => {
       <div>
         <ProductName>{product.name}</ProductName>
       <ProductPrice>{formattedPrice}</ProductPrice>
-      <button>Edit</button>
+      
       </div>
-      <button>Delete</button>
+      <div>
+        <button>Edit</button>
+      </div>
+
+      <div>
+       <button onClick={() => setIsOpen(true)}>Delete</button>
+
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}/>
+      </div>
     </ProductContainer>
   );
 };

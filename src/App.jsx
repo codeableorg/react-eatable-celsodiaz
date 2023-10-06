@@ -30,6 +30,7 @@ const CustomTitle = styled.h1`
 function App() {
   const [products, setProducts] = useState([]);
   
+  
   useEffect(() => {
     getProducts()
       .then((data) => {
