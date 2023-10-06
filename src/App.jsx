@@ -3,6 +3,7 @@ import { getProducts } from "./services/products-service";
 import Container from "./components/Container";
 import ProductsList from "./components/ProductsList";
 import styled from "@emotion/styled";
+import { colors } from "./styles/colors";
 
 function parseProducts(products) {
   return products.map((product) => parseProduct(product));
@@ -44,6 +45,17 @@ const Footer = styled.div`
   align-items: center;
 `;
 
+const CustomButtonCreate = styled.button`
+  background-color: ${colors.orange};
+  color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 5px 85px;
+  &:hover {
+    background-color: orange; 
+  }
+  cursor: pointer;
+`;
 function App() {
   const [products, setProducts] = useState([]);
 
@@ -63,7 +75,7 @@ function App() {
       <FixedHeader>Products Dashboard</FixedHeader>
       <ProductsList products={products} />
       <Footer>
-        <button>Create Product</button>
+        <CustomButtonCreate>Create Product</CustomButtonCreate>
       </Footer>
     </Container>
   );
