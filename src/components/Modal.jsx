@@ -41,6 +41,7 @@ const CustomButton = styled.button`
     background-color: ${(props) =>
       props.green ? 'lightgreen' : 'orange'}; 
   }
+  cursor: pointer;
 `;
 
 const CustomTitle = styled.h1`

@@ -1,6 +1,5 @@
-import { useState } from "react"
+import React, { useState, useEffect } from "react";
 import { getProducts } from "./services/products-service";
-import { useEffect } from "react";
 import Container from "./components/Container";
 import ProductsList from "./components/ProductsList";
 import styled from "@emotion/styled";
@@ -8,11 +7,11 @@ import styled from "@emotion/styled";
 function parseProducts(products) {
   return products.map((product) => parseProduct(product));
 }
+
 function parseProduct(product) {
-  // console.log(product);
-  const {id,name,price,category,description,picture_url} = product;
+  const { id, name, price, category, description, picture_url } = product;
   return {
-		id,
+    id,
     name,
     price,
     category,
@@ -21,16 +20,33 @@ function parseProduct(product) {
   };
 }
 
-const CustomTitle = styled.h1`
-  padding-top: 40px;
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #eeecec;
+  padding: 15px 0;
   font-weight: bolder;
   font-size: 1.5em;
+  z-index: 1; 
+`;
+
+const Footer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #eeecec;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 function App() {
   const [products, setProducts] = useState([]);
-  
-  
+
   useEffect(() => {
     getProducts()
       .then((data) => {
@@ -41,13 +57,16 @@ function App() {
         console.error("Error al cargar productos:", error);
       });
   }, []);
+
   return (
-   <Container>
-   <CustomTitle>Products Dashboard</CustomTitle>
-   <button>Create Product</button>
-   <ProductsList products={products}/>
-   </Container>
-  )
+    <Container>
+      <FixedHeader>Products Dashboard</FixedHeader>
+      <ProductsList products={products} />
+      <Footer>
+        <button>Create Product</button>
+      </Footer>
+    </Container>
+  );
 }
 
-export default App
+export default App;

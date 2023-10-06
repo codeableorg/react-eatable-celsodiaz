@@ -6,7 +6,7 @@ const ProductGrid = styled.ul`
   grid-template-columns: repeat(2, 1fr); 
   gap: 20px; 
   list-style: none;
-  padding: 0;
+  padding: 35px 0;
   margin-left: 20px;
   margin-right: 20px; 
 `;
