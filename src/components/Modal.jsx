@@ -27,7 +27,7 @@ const OVERLAY_STYLES = {
 const CustomAlert = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
     border-radius: 20px;
 `;
 
@@ -43,6 +43,10 @@ const CustomButton = styled.button`
   }
 `;
 
+const CustomTitle = styled.h1`
+    text-align: center;
+`;
+
 export default function Modal({ open, onClose }) {
   if (!open) return null
 
@@ -50,7 +54,7 @@ export default function Modal({ open, onClose }) {
     <>
       <div style={OVERLAY_STYLES} />
       <CustomAlert style={MODAL_STYLES}>
-        <p>Are you sure?</p>
+        <CustomTitle>Are you sure?</CustomTitle>
         <CustomButton onClick={onClose}>Yes, delete it!</CustomButton>
         <CustomButton green onClick={onClose}>No, Cancel!</CustomButton>
       </CustomAlert>
