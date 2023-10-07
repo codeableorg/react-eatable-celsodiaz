@@ -44,6 +44,10 @@ const CustomTitle = styled.h1`
   text-align: center;
 `;
 
+const CustomAlertError = styled.div`
+ color: red;
+`;
+
 export default function Modal({ open, onClose, onRemoveProduct, product , errorMessage}) {
   if (!open) return null;
 
@@ -54,7 +58,7 @@ export default function Modal({ open, onClose, onRemoveProduct, product , errorM
         <CustomTitle>Are you sure?</CustomTitle>
         <CustomButton onClick={() => onRemoveProduct(product)}>Yes, delete it!</CustomButton>
         <CustomButton green onClick={onClose}>No, Cancel!</CustomButton>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
+        {errorMessage && <CustomAlertError className="error-message">{errorMessage}</CustomAlertError>}
       </CustomAlert>
     </>,
     document.getElementById('portal')
