@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { colors } from '../styles/colors';
+import { useAuth } from '../context/Product-context';
 
 const CustomAlert = styled.div`
   position: fixed;
@@ -48,7 +49,8 @@ const CustomAlertError = styled.div`
  color: red;
 `;
 
-export default function Modal({ open, onClose, onRemoveProduct, product , errorMessage}) {
+export default function Modal({ open, onClose, product }) {
+  const {DeleteProduct , error} = useAuth();
   if (!open) return null;
 
   return ReactDOM.createPortal(
@@ -56,9 +58,9 @@ export default function Modal({ open, onClose, onRemoveProduct, product , errorM
       <CustomOverlay />
       <CustomAlert>
         <CustomTitle>Are you sure?</CustomTitle>
-        <CustomButton onClick={() => onRemoveProduct(product)}>Yes, delete it!</CustomButton>
+        <CustomButton onClick={() => DeleteProduct(product)}>Yes, delete it!</CustomButton>
         <CustomButton green onClick={onClose}>No, Cancel!</CustomButton>
-        {errorMessage && <CustomAlertError className="error-message">{errorMessage}</CustomAlertError>}
+        {error && <CustomAlertError className="error-message">{error}</CustomAlertError>}
       </CustomAlert>
     </>,
     document.getElementById('portal')
