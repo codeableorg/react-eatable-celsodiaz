@@ -64,6 +64,7 @@ const CustomButtonCreate = styled.button`
 `;
 function App() {
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
 
   function handleDeleteProduct(product) {
     const productFind = products.find(
@@ -74,7 +75,10 @@ function App() {
         (productDelete) => productDelete.name != product.name
       );
       setProducts(newProducts);
-    });
+    }).catch((error) => {
+      console.error("Error al borrar el producto", error);
+      setError("Product cannot be deleted. Please try again later.");
+    });;
   }
 
   useEffect(() => {
@@ -91,7 +95,7 @@ function App() {
   return (
     <Container>
       <FixedHeader>Products Dashboard</FixedHeader>
-      <ProductsList products={products} onRemoveProduct={handleDeleteProduct}/>
+      <ProductsList products={products} errorMessage={error} onRemoveProduct={handleDeleteProduct}/>
       <Footer>
         <CustomButtonCreate>
           <Link to="/create" style={linkStyle}>Create Product</Link>

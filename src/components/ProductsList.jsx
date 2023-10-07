@@ -11,11 +11,11 @@ const ProductGrid = styled.ul`
   margin-right: 20px; 
 `;
 
-const ProductsList = ({ products, onRemoveProduct }) => {
+const ProductsList = ({ products, onRemoveProduct,errorMessage }) => {
   return (
     <ProductGrid>
       {products.map((product) => (
-        <Product key={product.id} product={product} onRemoveProduct={onRemoveProduct}/>
+        <Product key={product.id} product={product} onRemoveProduct={onRemoveProduct} errorMessage={errorMessage}/>
       ))}
     </ProductGrid>
   );
