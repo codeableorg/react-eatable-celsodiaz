@@ -46,6 +46,11 @@ const Footer = styled.div`
   align-items: center;
 `;
 
+const linkStyle = {
+  textDecoration: "none", 
+  color: "inherit", 
+};
+
 const CustomButtonCreate = styled.button`
   background-color: ${colors.orange};
   color: white;
@@ -88,7 +93,9 @@ function App() {
       <FixedHeader>Products Dashboard</FixedHeader>
       <ProductsList products={products} onRemoveProduct={handleDeleteProduct}/>
       <Footer>
-        <Link to="/create">Create Product</Link>
+        <CustomButtonCreate>
+          <Link to="/create" style={linkStyle}>Create Product</Link>
+        </CustomButtonCreate>
       </Footer>
     </Container>
   );

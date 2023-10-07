@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { colors } from '../styles/colors';
 import { useState } from 'react';
 import Modal from './Modal';
+import ReviewModal from './ReviewModal';
 
 const ProductContainer = styled.li`
   list-style: none;
@@ -43,10 +44,16 @@ const ProductPrice = styled.p`
 const Product = ({ product,onRemoveProduct }) => {
   const formattedPrice = `$${(product.price / 100).toFixed(2)}`;
   const [isOpen, setIsOpen] = useState(false);
+  const [open,setOpen] = useState(false);
 
   return (
-    <ProductContainer>
-      <ProductImage src={product.imagen} alt={product.description} />
+    <ProductContainer >
+
+      <div>
+        <ProductImage src={product.imagen} alt={product.description} onClick={() => setOpen(true)} />
+        <ReviewModal open={open} onClose={() => setOpen(false)} product={product}/>
+      </div>
+
       <div>
         <ProductName>{product.name}</ProductName>
       <ProductPrice>{formattedPrice}</ProductPrice>
