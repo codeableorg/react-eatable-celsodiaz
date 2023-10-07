@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 const ContainerDiv = styled.div`
-  /* width: 380px;  */
+  width: 390px; 
   height: auto; 
   margin: auto;
   text-align: center;
