@@ -69,14 +69,13 @@ function App() {
       .catch((error) => {
         console.error("Error al cargar productos:", error);
       });
-  }, []);
+  }, [products]);
 
   return (
     <Container>
       <FixedHeader>Products Dashboard</FixedHeader>
       <ProductsList products={products} />
       <Footer>
-        {/* <CustomButtonCreate>Create Product</CustomButtonCreate> */}
         <Link to="/create">Create Product</Link>
       </Footer>
     </Container>

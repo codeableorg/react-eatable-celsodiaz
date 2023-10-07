@@ -17,18 +17,25 @@ const CreatePage = () => {
         picture_url:"",
     })
 
-    const [confirmationMessage, setConfirmationMessage] = useState(null); // Estado para el mensaje de confirmación
+    const [confirmationMessage, setConfirmationMessage] = useState(null); 
 
     function handleSubmit(event) {
         event.preventDefault();
         createProducts(formData)
             .then((product) => {
                 console.log(product);
-                setConfirmationMessage("El producto fue creado exitosamente."); // Establece el mensaje de confirmación
+                setConfirmationMessage("El producto fue creado exitosamente.");
+                setFormData({  
+                    name: "",
+                    price: "",
+                    description: "",
+                    category: "",
+                    picture_url: "",
+                }); 
             })
             .catch((error) => {
                 console.log(error);
-                setConfirmationMessage("Hubo un error al crear el producto."); // Establece el mensaje de error
+                setConfirmationMessage("Hubo un error al crear el producto."); 
             });
     }
 
