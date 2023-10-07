@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Input from "../components/Input";
+import { createProducts } from "../services/products-service";
 
 const CreatePage = () => {
     const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const CreatePage = () => {
     })
     function handleSubmit(event){
         event.preventDefault();
-        console.log(formData);
+        createProducts(formData).then((product)=>console.log(product)).catch((error)=>console.log(error));
     }
     function handleChange(event){
         const {name,value} = event.target;
