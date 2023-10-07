@@ -1,35 +1,108 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import { deleteProduct, getProducts } from "./services/products-service";
+import Container from "./components/Container";
+import ProductsList from "./components/ProductsList";
+import styled from "@emotion/styled";
+import { colors } from "./styles/colors";
+import { Link } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+function parseProducts(products) {
+  return products.map((product) => parseProduct(product));
 }
 
-export default App
+function parseProduct(product) {
+  const { id, name, price, category, description, picture_url } = product;
+  return {
+    id,
+    name,
+    price,
+    category,
+    description,
+    imagen: picture_url,
+  };
+}
+
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #eeecec;
+  padding: 15px 0;
+  font-weight: bolder;
+  font-size: 1.5em;
+  z-index: 1; 
+`;
+
+const Footer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #eeecec;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const linkStyle = {
+  textDecoration: "none", 
+  color: "inherit", 
+};
+
+const CustomButtonCreate = styled.button`
+  background-color: ${colors.orange};
+  color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 5px 85px;
+  &:hover {
+    background-color: orange; 
+  }
+  cursor: pointer;
+`;
+function App() {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+
+  function handleDeleteProduct(product) {
+    const productFind = products.find(
+      (productFind) => productFind.name === product.name
+    );
+    deleteProduct(productFind.id).then(() => {
+      const newProducts = products.filter(
+        (productDelete) => productDelete.name != product.name
+      );
+      setProducts(newProducts);
+    }).catch((error) => {
+      console.error("Error al borrar el producto", error);
+      setError("Product cannot be deleted. Please try again later.");
+    });;
+  }
+
+  useEffect(() => {
+    getProducts()
+      .then((data) => {
+        const parsedProducts = parseProducts(data);
+        setProducts(parsedProducts);
+      })
+      .catch((error) => {
+        console.error("Error al cargar productos:", error);
+      });
+  }, [products]);
+
+  return (
+    <Container>
+      <FixedHeader>Products Dashboard</FixedHeader>
+      <ProductsList products={products} errorMessage={error} onRemoveProduct={handleDeleteProduct}/>
+      <Footer>
+        <CustomButtonCreate>
+          <Link to="/create" style={linkStyle}>Create Product</Link>
+        </CustomButtonCreate>
+      </Footer>
+    </Container>
+  );
+}
+
+export default App;
