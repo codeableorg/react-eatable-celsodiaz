@@ -48,7 +48,7 @@ const CustomTitle = styled.h1`
     text-align: center;
 `;
 
-export default function Modal({ open, onClose }) {
+export default function Modal({ open, onClose,onRemoveProduct,product }) {
   if (!open) return null
 
   return ReactDom.createPortal(
@@ -56,7 +56,7 @@ export default function Modal({ open, onClose }) {
       <div style={OVERLAY_STYLES} />
       <CustomAlert style={MODAL_STYLES}>
         <CustomTitle>Are you sure?</CustomTitle>
-        <CustomButton onClick={onClose}>Yes, delete it!</CustomButton>
+        <CustomButton onClick={()=>onRemoveProduct(product)}>Yes, delete it!</CustomButton>
         <CustomButton green onClick={onClose}>No, Cancel!</CustomButton>
       </CustomAlert>
     </>,

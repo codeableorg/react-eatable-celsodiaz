@@ -40,7 +40,7 @@ const ProductPrice = styled.p`
   color: ${colors.orange}; 
 `;
 
-const Product = ({ product }) => {
+const Product = ({ product,onRemoveProduct }) => {
   const formattedPrice = `$${(product.price / 100).toFixed(2)}`;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -59,7 +59,7 @@ const Product = ({ product }) => {
       <div>
        <button onClick={() => setIsOpen(true)}>Delete</button>
 
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}/>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)} onRemoveProduct={onRemoveProduct} product={product}/>
       </div>
     </ProductContainer>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "./services/products-service";
+import { deleteProduct, getProducts } from "./services/products-service";
 import Container from "./components/Container";
 import ProductsList from "./components/ProductsList";
 import styled from "@emotion/styled";
@@ -60,6 +60,18 @@ const CustomButtonCreate = styled.button`
 function App() {
   const [products, setProducts] = useState([]);
 
+  function handleDeleteProduct(product) {
+    const productFind = products.find(
+      (productFind) => productFind.name === product.name
+    );
+    deleteProduct(productFind.id).then(() => {
+      const newProducts = products.filter(
+        (productDelete) => productDelete.name != product.name
+      );
+      setProducts(newProducts);
+    });
+  }
+
   useEffect(() => {
     getProducts()
       .then((data) => {
@@ -74,7 +86,7 @@ function App() {
   return (
     <Container>
       <FixedHeader>Products Dashboard</FixedHeader>
-      <ProductsList products={products} />
+      <ProductsList products={products} onRemoveProduct={handleDeleteProduct}/>
       <Footer>
         <Link to="/create">Create Product</Link>
       </Footer>

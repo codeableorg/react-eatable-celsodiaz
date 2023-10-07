@@ -7,3 +7,7 @@ export function getProducts() {
 export function createProducts(productData){
   return apiFetch("/products", { body: productData});
 }
+
+export function deleteProduct(id) {
+  return apiFetch(`/products/${id}`, { method: "DELETE" });
+}
