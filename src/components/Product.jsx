@@ -3,6 +3,7 @@ import { colors } from '../styles/colors';
 import { useState } from 'react';
 import Modal from './Modal';
 import ReviewModal from './ReviewModal';
+import { Link } from "react-router-dom";
 
 const ProductContainer = styled.li`
   list-style: none;
@@ -41,7 +42,7 @@ const ProductPrice = styled.p`
   color: ${colors.orange}; 
 `;
 
-const Product = ({ product,onRemoveProduct,errorMessage }) => {
+const Product = ({ product }) => {
   const formattedPrice = `$${(product.price / 100).toFixed(2)}`;
   const [isOpen, setIsOpen] = useState(false);
   const [open,setOpen] = useState(false);
@@ -50,7 +51,7 @@ const Product = ({ product,onRemoveProduct,errorMessage }) => {
     <ProductContainer >
 
       <div>
-        <ProductImage src={product.imagen} alt={product.description} onClick={() => setOpen(true)} />
+        <ProductImage src={product.picture_url} alt={product.description} onClick={() => setOpen(true)} />
         <ReviewModal open={open} onClose={() => setOpen(false)} product={product}/>
       </div>
 
@@ -60,13 +61,13 @@ const Product = ({ product,onRemoveProduct,errorMessage }) => {
       
       </div>
       <div>
-        <button>Edit</button>
+        <Link to={`/edit/${product.id}`}>Edit</Link>
       </div>
 
       <div>
        <button onClick={() => setIsOpen(true)}>Delete</button>
 
-        <Modal open={isOpen} onClose={() => setIsOpen(false)} errorMessage={errorMessage} onRemoveProduct={onRemoveProduct} product={product}/>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)} product={product}/>
       </div>
     </ProductContainer>
   );

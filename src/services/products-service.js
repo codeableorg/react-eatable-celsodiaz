@@ -11,3 +11,7 @@ export function createProducts(productData){
 export function deleteProduct(id) {
   return apiFetch(`/products/${id}`, { method: "DELETE" });
 }
+
+export function editProduct({id,productData}) {
+  return apiFetch(`/products/${id}`, { method: "PATCH" ,body: productData });
+}

@@ -5,12 +5,16 @@ import { Global } from '@emotion/react';
 import { global, reset } from './styles';
 import CreatePage from './pages/Create-Page';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ProductProvider } from './context/Product-context';
+import EditPage from './pages/Edit-Page';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <Global styles={reset} />
     <Global styles={global} />
-    <BrowserRouter>
+    <ProductProvider>
+      <BrowserRouter>
     <Routes>
     <Route
           path="/"
@@ -24,8 +28,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <CreatePage/>
           }
     />
+    <Route
+          path="/edit/:productId"
+          element={
+            <EditPage/>
+          }
+    />
     </Routes>
     </BrowserRouter>
-    
+    </ProductProvider>
   </React.StrictMode>,
 )

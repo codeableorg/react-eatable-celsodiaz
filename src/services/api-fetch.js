@@ -36,9 +36,7 @@ export default async function apiFetch(
       throw new Error(response.statusText);
     }
     if (typeof data.errors === "object"){
-      // Object into array of arrays
       const errors = Object.entries(data.errors);
-      // Array of arrays into array of strings
       const messages = errors.map(([key, value]) => `${key} ${value}`);
       data.errors = messages;
     }

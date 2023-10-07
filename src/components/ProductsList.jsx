@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import Product from './Product';
+import { useAuth } from '../context/Product-context';
 
 const ProductGrid = styled.ul`
   display: grid;
@@ -11,11 +12,12 @@ const ProductGrid = styled.ul`
   margin-right: 20px; 
 `;
 
-const ProductsList = ({ products, onRemoveProduct,errorMessage }) => {
+const ProductsList = () => {
+  const {products} = useAuth();
   return (
     <ProductGrid>
       {products.map((product) => (
-        <Product key={product.id} product={product} onRemoveProduct={onRemoveProduct} errorMessage={errorMessage}/>
+        <Product key={product.id} product={product} />
       ))}
     </ProductGrid>
   );
