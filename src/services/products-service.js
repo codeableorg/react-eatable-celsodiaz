@@ -12,6 +12,6 @@ export function deleteProduct(id) {
   return apiFetch(`/products/${id}`, { method: "DELETE" });
 }
 
-export function editProduct(id) {
-  return apiFetch(`/products/${id}`, { method: "PATCH" });
+export function editProduct({id,productData}) {
+  return apiFetch(`/products/${id}`, { method: "PATCH" ,body: productData });
 }

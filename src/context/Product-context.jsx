@@ -15,7 +15,7 @@ function parseProducts(products) {
 	  price,
 	  category,
 	  description,
-	  imagen: picture_url,
+	  picture_url,
 	};
   }
 
@@ -49,16 +49,21 @@ function ProductProvider({ children }) {
     });;
   }
 
-  function EditProduct(product) {
-    const productFind = products.find(
-      (productFind) => productFind.name === product.name
-    );
-    auth.editProduct(productFind.id).then(response => console.log(response))
-    .catch(err => console.error(err));
+  function UpdateProduct(productData, productId) {
+    return new Promise((resolve, reject) => {
+      auth.editProduct({ id: productId, productData })
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
+  
   return (
 		<AuthContext.Provider
-		value={{products,DeleteProduct,EditProduct,error}}>
+		value={{products,DeleteProduct,UpdateProduct,error}}>
 			{children}
 		</AuthContext.Provider>);
 }

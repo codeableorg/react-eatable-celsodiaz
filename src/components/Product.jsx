@@ -51,7 +51,7 @@ const Product = ({ product }) => {
     <ProductContainer >
 
       <div>
-        <ProductImage src={product.imagen} alt={product.description} onClick={() => setOpen(true)} />
+        <ProductImage src={product.picture_url} alt={product.description} onClick={() => setOpen(true)} />
         <ReviewModal open={open} onClose={() => setOpen(false)} product={product}/>
       </div>
 
@@ -61,7 +61,7 @@ const Product = ({ product }) => {
       
       </div>
       <div>
-        <Link to="/edit">Edit</Link>
+        <Link to={`/edit/${product.id}`}>Edit</Link>
       </div>
 
       <div>

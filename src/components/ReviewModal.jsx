@@ -12,16 +12,16 @@ const CustomAlert = styled.div`
   padding: 30px;
   z-index: 1000;
   display: flex;
-  flex-direction: row; /* Cambiado a fila para colocar los elementos al lado */
-  align-items: center; /* Centrar verticalmente */
+  flex-direction: row; 
+  align-items: center;
   gap: 25px;
   border-radius: 20px;
 `;
 
 const ProductImage = styled.img`
   border-radius: 50%;
-  max-width: 30%; /* Ajusta el tamaño de la imagen */
-  height: auto; /* Altura automática para mantener la proporción */
+  max-width: 30%; 
+  height: auto; 
   object-fit: cover;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
 `;
@@ -58,7 +58,7 @@ export default function ReviewModal({ open, onClose, product }) {
     <>
       <CustomOverlay />
       <CustomAlert>
-        <ProductImage src={product.imagen} alt={product.description} />
+        <ProductImage src={product.picture_url} alt={product.description} />
         <div>
           <p>{product.name}</p>
           <p>{product.price}</p>

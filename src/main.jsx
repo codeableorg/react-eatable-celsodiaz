@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           }
     />
     <Route
-          path="/edit"
+          path="/edit/:productId"
           element={
             <EditPage/>
           }
