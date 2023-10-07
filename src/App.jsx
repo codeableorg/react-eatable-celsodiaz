@@ -4,6 +4,7 @@ import Container from "./components/Container";
 import ProductsList from "./components/ProductsList";
 import styled from "@emotion/styled";
 import { colors } from "./styles/colors";
+import { Link } from "react-router-dom";
 
 function parseProducts(products) {
   return products.map((product) => parseProduct(product));
@@ -75,7 +76,8 @@ function App() {
       <FixedHeader>Products Dashboard</FixedHeader>
       <ProductsList products={products} />
       <Footer>
-        <CustomButtonCreate>Create Product</CustomButtonCreate>
+        {/* <CustomButtonCreate>Create Product</CustomButtonCreate> */}
+        <Link to="/create">Create Product</Link>
       </Footer>
     </Container>
   );

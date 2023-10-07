@@ -1,6 +1,12 @@
 import { useState } from "react"
 import Input from "../components/Input";
 import { createProducts } from "../services/products-service";
+import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
+
+const CustomAlert = styled.p`
+ color: green;
+`;
 
 const CreatePage = () => {
     const [formData, setFormData] = useState({
@@ -10,17 +16,31 @@ const CreatePage = () => {
         category:"",
         picture_url:"",
     })
-    function handleSubmit(event){
+
+    const [confirmationMessage, setConfirmationMessage] = useState(null); // Estado para el mensaje de confirmación
+
+    function handleSubmit(event) {
         event.preventDefault();
-        createProducts(formData).then((product)=>console.log(product)).catch((error)=>console.log(error));
+        createProducts(formData)
+            .then((product) => {
+                console.log(product);
+                setConfirmationMessage("El producto fue creado exitosamente."); // Establece el mensaje de confirmación
+            })
+            .catch((error) => {
+                console.log(error);
+                setConfirmationMessage("Hubo un error al crear el producto."); // Establece el mensaje de error
+            });
     }
+
     function handleChange(event){
         const {name,value} = event.target;
         setFormData({...formData,[name]: value});
     }
   return (
     <>
+    <Link to="/">Back</Link>
     <h1>Create Product</h1>
+    {confirmationMessage && <CustomAlert>{confirmationMessage}</CustomAlert>}
     <form onSubmit={handleSubmit}>
         <Input
         name="name"
@@ -59,6 +79,7 @@ const CreatePage = () => {
         />
         <button type="submit">Create</button>
     </form>
+    
     </>
   )
 }
