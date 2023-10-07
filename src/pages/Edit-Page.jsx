@@ -87,7 +87,7 @@ const EditPage = () => {
           onChange={handleChange}
           label="Picture URL:"
         />
-        <button type="submit">Update</button>
+        <button type="submit">Save</button>
       </form>
     </>
   );
