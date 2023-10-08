@@ -12,13 +12,12 @@ const ProductContainer = styled.li`
   list-style: none;
   background-color: white; 
   padding: 20px;
-  padding-top: 90px ;
+  padding-top: 90px;
   margin-top: 80px;
   text-align: center;
   border-radius: 35px; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
   position: relative; 
-  
 `;
 
 const ProductImage = styled.img`
@@ -26,11 +25,11 @@ const ProductImage = styled.img`
   display: block;
   margin: 0 auto;
   position: absolute; 
-  top: -25%; 
+  top: -38%; 
   right: 0;
   left: 0;
   width: 88%; 
-  height: 57%; 
+  height: 80%; 
   object-fit: cover;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4); 
 `;
