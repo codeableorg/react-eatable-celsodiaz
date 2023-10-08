@@ -16,7 +16,7 @@ export const CustomFooter = styled.footer`
    display:flex;
    flex-direction: row;
    justify-content: space-evenly;
-   margin:40px;
+   margin:40px 40px 20px 40px;
    align-items: center;
    h1 {
      vertical-align: middle;
@@ -34,6 +34,7 @@ export const CustomButton = styled.button`
   border-radius: 20px;
   border: none;
   padding: 5px 85px;
+  margin: 0px 10px;
   &:hover {
     background-color: orange; 
   }
@@ -50,4 +51,5 @@ export const customIcono = css`
 
 export const CustomAlert = styled.p`
  color: green;
+ margin: auto;
 `;
