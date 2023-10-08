@@ -2,11 +2,9 @@ import { useState } from "react"
 import Input from "../components/Input";
 import { createProducts } from "../services/products-service";
 import { Link } from "react-router-dom";
-import styled from "@emotion/styled";
+import { IoChevronBackCircleSharp} from 'react-icons/io5';
+import { CustomAlert, CustomButton, CustomContent, CustomFooter, CustomForm, customIcono } from "./CustomCss";
 
-const CustomAlert = styled.p`
- color: green;
-`;
 
 const CreatePage = () => {
     const [formData, setFormData] = useState({
@@ -44,11 +42,15 @@ const CreatePage = () => {
         setFormData({...formData,[name]: value});
     }
   return (
-    <>
-    <Link to="/">Back</Link>
-    <h1>Create Product</h1>
+    <CustomContent>
+        <CustomFooter>
+            <Link to="/">
+                <IoChevronBackCircleSharp className={customIcono}/>
+            </Link>
+            <h1>Create Product</h1>  
+        </CustomFooter>
     {confirmationMessage && <CustomAlert>{confirmationMessage}</CustomAlert>}
-    <form onSubmit={handleSubmit}>
+    <CustomForm onSubmit={handleSubmit}>
         <Input
         name="name"
         type="text"
@@ -84,10 +86,10 @@ const CreatePage = () => {
         onChange={handleChange}
         label="Picture URL:"
         />
-        <button type="submit">Create</button>
-    </form>
+        <CustomButton type="submit">Create</CustomButton>
+    </CustomForm>
     
-    </>
+    </CustomContent>
   )
 }
 

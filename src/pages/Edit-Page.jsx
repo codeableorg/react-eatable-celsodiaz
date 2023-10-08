@@ -2,10 +2,13 @@ import { Link, useParams } from "react-router-dom";
 import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/Product-context";
+import { CustomAlert, CustomButton, CustomContent, CustomFooter, CustomForm, customIcono } from "./CustomCss";
+import { IoChevronBackCircleSharp} from 'react-icons/io5';
 
 const EditPage = () => {
   const { productId } = useParams();
   const { UpdateProduct, products } = useAuth();
+  const [confirmationMessage, setConfirmationMessage] = useState(null);
   
   const [formData, setFormData] = useState({
     name: "",
@@ -39,6 +42,7 @@ const EditPage = () => {
       category: "",
      picture_url: "",
     });
+    setConfirmationMessage("The product was updated successfully");
   };
   
 
@@ -48,10 +52,13 @@ const EditPage = () => {
   }
 
   return (
-    <>
-      <Link to="/">Back</Link>
-      <h1>Edit Product</h1>
-      <form onSubmit={handleSubmit}>
+    <CustomContent>
+      <CustomFooter>
+        <Link to="/"><IoChevronBackCircleSharp className={customIcono}/></Link>
+        <h1>Edit Product</h1>
+      </CustomFooter>
+      {confirmationMessage && <CustomAlert>{confirmationMessage}</CustomAlert>}
+      <CustomForm onSubmit={handleSubmit}>
         <Input
           name="name"
           type="text"
@@ -87,9 +94,9 @@ const EditPage = () => {
           onChange={handleChange}
           label="Picture URL:"
         />
-        <button type="submit">Update</button>
-      </form>
-    </>
+        <CustomButton type="submit">Save</CustomButton>
+      </CustomForm>
+    </CustomContent>
   );
 };
 

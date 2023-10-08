@@ -15,7 +15,7 @@ const FixedHeader = styled.div`
   background-color: #eeecec;
   padding: 15px 0;
   font-weight: bolder;
-  font-size: 1.5em;
+  font-size: 1.75em;
   z-index: 1; 
 `;
 
